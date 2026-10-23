@@ -72,3 +72,39 @@ h6 {
     font-family: Arial, sans-serif;
     font-size: 20px;
 }
+.about-button {
+    display: inline-block; /* Isso faz o link se comportar como um botão */
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    background-color: green; /* Cor de fundo verde */
+    color: white; /* Cor do texto branco */
+    border: none; /* Remove a borda padrão */
+    border-radius: 15px; /* Borda arredondada */
+    text-align: center; /* Centraliza o texto */
+    text-decoration: none; /* Remove o sublinhado do link */
+    font-size: 16px; /* Tamanho da fonte */
+    cursor: pointer; /* Cursor do mouse em forma de mãozinha */
+    transition: background-color 0.3s ease; /* Transição suave para a mudança de cor de fundo */
+  }
+  
+  .about-button:hover {
+    background-color: darkgreen; /* Cor de fundo ao passar o mouse */
+  }
+  
+  .home-button {
+    display: inline-block; /* Isso faz o link se comportar como um botão */
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    background-color: green; /* Cor de fundo verde */
+    color: black; /* Cor do texto branco */
+    border: none; /* Remove a borda padrão */
+    border-radius: 15px; /* Borda arredondada */
+    text-align: center; /* Centraliza o texto */
+    text-decoration: none; /* Remove o sublinhado do link */
+    font-size: 16px; /* Tamanho da fonte */
+    cursor: pointer; /* Cursor do mouse em forma de mãozinha */
+    transition: background-color 0.3s ease; /* Transição suave para a mudança de cor de fundo */
+  }
+  
+  .home-button:hover {
+    background-color: darkgreen; /* Cor de fundo ao passar o mouse */
+  }
+  

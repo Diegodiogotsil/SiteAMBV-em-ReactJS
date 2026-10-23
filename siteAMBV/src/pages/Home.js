@@ -6,6 +6,7 @@ function Home() {
       <header>
         <h1>Cadastro de Candidatos</h1>
         <h3>Cadastre-se e faça parte de nós</h3>
+        
       </header>
       <section>
         <h2>Entre em contato conosco para ajudar crianças</h2>

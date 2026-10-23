@@ -1,27 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function About() {
-  const [name, setName] = useState('');
-  const [age, setAge] = useState('');
-  const [message, setMessage] = useState('');
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isEligible, setIsEligible] = useState(false);
 
   useEffect(() => {
-    const volunteerName = prompt('Por favor, digite seu nome completo:');
-    const volunteerAge = prompt('Por favor, nos informe a sua idade:');
+    const volunteerName = prompt("Por favor, digite seu nome completo:");
+    let volunteerAge = prompt("Por favor, nos informe a sua idade:");
+
+    // Verifica se os prompts foram cancelados ou se os valores são inválidos
+    if (!volunteerName || !volunteerAge || isNaN(volunteerAge)) {
+      alert("Por favor, insira um nome e uma idade válidos.");
+      return;
+    }
+
+    volunteerAge = parseInt(volunteerAge, 10);
     setName(volunteerName);
     setAge(volunteerAge);
-    
-    let msg = `<p style='color: blue'>Seja bem-vindo(a) SR(A) ${volunteerName}, agradecemos sua participação.</p>`;
-    if (volunteerAge >= 18) {
-      msg += `<p style='color: blue'>Parabéns, sua inscrição foi aceita.</p>`;
-      msg += `<p style='color: blue'>Um de nossos agentes entrará em contato em breve.</p>`;
-    } else {
-      msg += `<p style='color: blue'>Infelizmente você não possui idade suficiente, mas entraremos em contato para conversar com você. Muito obrigado.</p>`;
-    }
-    setMessage(msg);
+    setIsEligible(volunteerAge >= 18);
+    setIsLoaded(true);
   }, []);
+
+  if (!isLoaded) {
+    return (
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "white",
+        }}
+      >
+        <p>Carregando...</p>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -39,18 +56,41 @@ function About() {
           <li>Outras oportunidades de vagas</li>
         </ul>
         <h6>Faça sua inscrição:</h6>
-        <Link to="/" className="home-button">Voltar para Home</Link>
-        <div dangerouslySetInnerHTML={{ __html: message }} />
+
+        <div style={{ color: "blue", margin: "10px 0" }}>
+          <p>
+            Seja bem-vindo(a) <strong>{name}</strong>, agradecemos sua
+            participação.
+          </p>
+          {isEligible ? (
+            <>
+              <p>Parabéns,  <strong>{name}</strong>, idade <strong>{age}</strong> sua inscrição foi aceita.</p>
+              <p>Um de nossos agentes entrará em contato em breve.</p>
+            </>
+          ) : (
+            <>
+              <p>
+                Infelizmente, você não possui idade suficiente, mas entraremos
+                em contato para conversar com você. Muito obrigado.
+              </p>
+            </>
+          )}
+        </div>
+
+        <Link to="/" className="home-button">
+          Voltar para Home
+        </Link>
       </section>
       <footer>
-        <h5><strong>Fundação AMBVE</strong></h5>
-        Todos os direitos reservados
-        <br />
-        Ajude-nos a ajudar
-        <br />
-        Endereço:
-        <br />
-        Suzano SP, próximo à ponte Boa Vista sobre o Rio Tietê e Raposão.
+        <h5>
+          <strong>Fundação AMBVE</strong>
+        </h5>
+        <p>Todos os direitos reservados</p>
+        <p>Ajude-nos a ajudar</p>
+        <p>
+          Endereço: Suzano SP, próximo à ponte Boa Vista sobre o Rio Tietê e
+          Raposão.
+        </p>
       </footer>
     </div>
   );
